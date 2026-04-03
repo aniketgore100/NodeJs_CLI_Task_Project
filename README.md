@@ -30,15 +30,19 @@ A lightweight **Command Line Interface (CLI) task management tool** built using 
 
 ```
 .
-├── server.js                  # CLI entry point (command parsing & routing)
+├── server.js                     # Entry point (initializes CLI execution)
+├── src/
+│   └── CommandInput.js          # Handles CLI input parsing and routing
 ├── middleware/
-│   └── jsonProcessor.js       # Business logic layer (create, update, delete tasks)
+│   └── jsonProcessor.js         # Core business logic (CRUD operations)
 ├── utils/
-│   ├── readFile.js            # Reads data from JSON storage
-│   └── writeFile.js           # Writes data to JSON storage
-├── data/
-│   └── data.json              # Persistent storage (acts as lightweight DB)
-└── package.json               # Project configuration
+│   ├── filePath.js              # Manages file path resolution
+│   ├── readFile.js              # Reads data from storage
+│   └── writeFile.js             # Writes data to storage
+├── output/
+│   └── output.json              # Persistent storage (task data)
+├── package.json                 # Project configuration & dependencies
+└── README.md                    # Project documentation
 ```
 
 ---
