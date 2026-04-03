@@ -28,16 +28,32 @@ A lightweight **Command Line Interface (CLI) task management tool** built using 
 
 ## 📂 Project Structure
 
-```
 .
-├── server.js              # Entry point (CLI handler)
+├── server.js                  # CLI entry point (command parsing & routing)
 ├── middleware/
-│   └── jsonProcessor.js   # Core business logic (CRUD operations)
+│   └── jsonProcessor.js       # Business logic layer (create, update, delete tasks)
 ├── utils/
-│   ├── readFile.js        # Reads JSON data
-│   └── writeFile.js       # Writes JSON data
-├── data.json              # Persistent storage
-```
+│   ├── readFile.js            # Reads data from JSON storage
+│   └── writeFile.js           # Writes data to JSON storage
+├── data/
+│   └── data.json              # Persistent storage (acts as lightweight DB)
+└── package.json               # Project configuration
+
+---
+
+### 🧩 Architecture Breakdown
+
+- **Entry Layer (CLI Interface)**  
+  Handles command parsing using `process.argv` and routes actions.
+
+- **Business Logic Layer**  
+  Contains core CRUD operations and task manipulation logic.
+
+- **Utility Layer (I/O Abstraction)**  
+  Abstracts file system operations for clean and reusable code.
+
+- **Data Layer**  
+  JSON-based storage using key-value structure for efficient access.
 
 ---
 
@@ -45,19 +61,14 @@ A lightweight **Command Line Interface (CLI) task management tool** built using 
 
 ### 🔹 CLI Input Parsing
 
-Uses `process.argv` to dynamically interpret commands:
-
-```
-node server.js add "Learn Node.js"
-node server.js update 2 "Master Backend"
-node server.js 2
-```
+node server.js add "Learn Node.js"  
+node server.js update 2 "Master Backend"  
+node server.js 2  
 
 ---
 
 ### 🔹 Data Storage Model
 
-```json
 {
   "lastTaskId": 3,
   "tasksById": {
@@ -65,7 +76,6 @@ node server.js 2
     "2": { "action": "add", "task": "Build CLI Tool" }
   }
 }
-```
 
 - Uses a **hash map structure** (`tasksById`)
 - Enables **O(1) access** for update/delete operations
@@ -82,10 +92,7 @@ node server.js 2
 ---
 
 ### 2. Efficient Data Handling
-- Direct object access:
-```
-tasksById[id]
-```
+- Direct object access: `tasksById[id]`  
 - No unnecessary iteration → optimized performance  
 
 ---
@@ -113,20 +120,14 @@ Supports flexible CLI inputs:
 
 ## 📌 Example Usage
 
-### ➕ Add Task
-```
+➕ Add Task  
 node server.js add "Build REST API"
-```
 
-### ✏️ Update Task
-```
+✏️ Update Task  
 node server.js update 1 "Build scalable REST API"
-```
 
-### 🗑️ Delete Task
-```
+🗑️ Delete Task  
 node server.js 1
-```
 
 ---
 
