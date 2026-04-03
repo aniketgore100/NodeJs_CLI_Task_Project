@@ -30,13 +30,15 @@ A lightweight **Command Line Interface (CLI) task management tool** built using 
 
 ```
 .
-├── server.js              # Entry point (CLI handler)
+├── server.js                  # CLI entry point (command parsing & routing)
 ├── middleware/
-│   └── jsonProcessor.js   # Core business logic (CRUD operations)
+│   └── jsonProcessor.js       # Business logic layer (create, update, delete tasks)
 ├── utils/
-│   ├── readFile.js        # Reads JSON data
-│   └── writeFile.js       # Writes JSON data
-├── data.json              # Persistent storage
+│   ├── readFile.js            # Reads data from JSON storage
+│   └── writeFile.js           # Writes data to JSON storage
+├── data/
+│   └── data.json              # Persistent storage (acts as lightweight DB)
+└── package.json               # Project configuration
 ```
 
 ---
