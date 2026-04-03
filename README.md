@@ -141,15 +141,6 @@ node server.js 1
 
 ---
 
-## 🚧 Future Improvements
-
-- [ ] Add `list` command to view all tasks  
-- [ ] Add task status (`pending`, `completed`)  
-- [ ] Replace JSON with database (MongoDB / SQLite)  
-- [ ] Convert into installable CLI tool (`npm link`)  
-- [ ] Add CLI flags using `commander` or `yargs`  
-
----
 
 ## 👨‍💻 Author
 
