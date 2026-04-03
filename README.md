@@ -27,3 +27,134 @@ A lightweight **Command Line Interface (CLI) task management tool** built using 
 ---
 
 ## 📂 Project Structure
+
+```
+.
+├── server.js              # Entry point (CLI handler)
+├── middleware/
+│   └── jsonProcessor.js   # Core business logic (CRUD operations)
+├── utils/
+│   ├── readFile.js        # Reads JSON data
+│   └── writeFile.js       # Writes JSON data
+├── data.json              # Persistent storage
+```
+
+---
+
+## ⚙️ How It Works
+
+### 🔹 CLI Input Parsing
+
+Uses `process.argv` to dynamically interpret commands:
+
+```
+node server.js add "Learn Node.js"
+node server.js update 2 "Master Backend"
+node server.js 2
+```
+
+---
+
+### 🔹 Data Storage Model
+
+```json
+{
+  "lastTaskId": 3,
+  "tasksById": {
+    "1": { "action": "add", "task": "Learn Node.js" },
+    "2": { "action": "add", "task": "Build CLI Tool" }
+  }
+}
+```
+
+- Uses a **hash map structure** (`tasksById`)
+- Enables **O(1) access** for update/delete operations
+
+---
+
+## 🧠 Core Concepts Demonstrated
+
+### 1. Modular Architecture
+- CLI handling → `server.js`  
+- Business logic → `jsonProcessor.js`  
+- File operations → `utils/`  
+
+---
+
+### 2. Efficient Data Handling
+- Direct object access:
+```
+tasksById[id]
+```
+- No unnecessary iteration → optimized performance  
+
+---
+
+### 3. Asynchronous File Operations
+- Uses `async/await` for non-blocking I/O  
+- Ensures smooth CLI execution  
+
+---
+
+### 4. Dynamic Command Parsing
+Supports flexible CLI inputs:
+- `add "task"`
+- `update id "task"`
+- `id` → delete  
+
+---
+
+### 5. Error Handling & Validation
+- Handles missing arguments  
+- Validates task existence  
+- Prevents invalid operations  
+
+---
+
+## 📌 Example Usage
+
+### ➕ Add Task
+```
+node server.js add "Build REST API"
+```
+
+### ✏️ Update Task
+```
+node server.js update 1 "Build scalable REST API"
+```
+
+### 🗑️ Delete Task
+```
+node server.js 1
+```
+
+---
+
+## ⚡ Key Highlights
+
+- Clean and readable codebase  
+- Strong separation of concerns  
+- Demonstrates backend fundamentals without frameworks  
+- Optimized data structure for fast operations  
+
+---
+
+## 🚧 Future Improvements
+
+- [ ] Add `list` command to view all tasks  
+- [ ] Add task status (`pending`, `completed`)  
+- [ ] Replace JSON with database (MongoDB / SQLite)  
+- [ ] Convert into installable CLI tool (`npm link`)  
+- [ ] Add CLI flags using `commander` or `yargs`  
+
+---
+
+## 👨‍💻 Author
+
+**Aniket Gore**
+
+---
+
+## 📄 License
+
+This project is open-source and available for learning and experimentation.
